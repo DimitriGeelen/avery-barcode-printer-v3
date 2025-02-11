@@ -23,15 +23,12 @@ const LabelTemplate = ({ template, barcodes }) => {
     height: templateConfig.pageHeight,
     margin: '0 auto',
     backgroundColor: 'white',
-    position: 'relative',
-    pageBreakAfter: 'always',
-    breakAfter: 'page'
+    position: 'relative'
   };
 
   const pageContainerStyle = {
     display: 'flex',
-    flexDirection: 'column',
-    gap: '20px'
+    flexDirection: 'column'
   };
 
   // Calculate grid positions for a single page
@@ -57,7 +54,7 @@ const LabelTemplate = ({ template, barcodes }) => {
         <div 
           key={pageIndex} 
           style={containerStyle} 
-          className={`page ${pageIndex > 0 ? 'page-break' : ''}`}
+          className="page"
         >
           {pageBarcodes.map((barcode, index) => {
             const row = Math.floor(index / templateConfig.columns);
