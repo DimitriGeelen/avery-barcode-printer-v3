@@ -4,13 +4,8 @@
 
 /* Default styles */
 .page {
-  page-break-after: always;
-  break-after: page;
-}
-
-.page:last-child {
-  page-break-after: auto;
   break-after: auto;
+  page-break-after: auto;
 }
 
 .label {
@@ -20,10 +15,18 @@
 
 /* Print styles */
 @media print {
+  @page {
+    size: auto;
+    margin: 0;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
   body * {
     visibility: hidden;
-    margin: 0 !important;
-    padding: 0 !important;
   }
   
   .print-section, .print-section * {
@@ -39,46 +42,23 @@
     margin: 0 !important;
   }
 
-  /* Force each page to be on a new sheet */
   .page {
-    page-break-after: always;
-    break-after: page;
     margin: 0 !important;
     padding: 0 !important;
-    position: relative !important;
+    break-after: avoid !important;
+    page-break-after: avoid !important;
   }
 
-  .page:last-child {
-    page-break-after: auto;
-    break-after: auto;
-  }
-
-  /* Ensure labels don't split across pages */
   .label {
-    break-inside: avoid;
-    page-break-inside: avoid;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
     position: absolute !important;
   }
 
-  /* Remove any background colors when printing */
   * {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
     background-color: transparent !important;
-  }
-
-  /* Hide scrollbars and ensure proper page size */
-  @page {
-    size: auto;
-    margin: 0mm;
-  }
-
-  html, body {
-    width: 100%;
-    height: 100%;
-    margin: 0 !important;
-    padding: 0 !important;
-    overflow: hidden;
   }
 
   img {
